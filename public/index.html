@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Búsqueda del Tesoro Fantástica</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Búsqueda del Tesoro Fantástica</h1>
+        <div id="connection-info">
+            <p>Esperando que tu pareja se conecte...</p>
+            <p>Comparte este enlace: <span id="game-link"></span></p>
+        </div>
+
+        <div id="game-area" style="display: none;">
+            <div id="role-display"></div>
+            <h2 id="puzzle-title"></h2>
+            <p id="puzzle-description"></p>
+
+            <div id="pister-section" class="player-section" style="display: none;">
+                <h3>Tu Información (Pistero):</h3>
+                <p id="pister-info"></p>
+                <input type="text" id="pister-input" placeholder="Escribe tu pista aquí...">
+                <button id="send-clue-btn">Enviar Pista</button>
+            </div>
+
+            <div id="guesser-section" class="player-section" style="display: none;">
+                <h3>Pistas Recibidas:</h3>
+                <div id="clues-received"></div>
+                <h3>Tu Información (Adivinador):</h3>
+                <p id="guesser-info"></p>
+                <input type="text" id="guesser-input" placeholder="Adivina la respuesta aquí...">
+                <button id="send-answer-btn">Enviar Respuesta</button>
+            </div>
+
+            <div id="message-area"></div>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
