@@ -1,45 +1,86 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Búsqueda del Tesoro Fantástica</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Búsqueda del Tesoro Fantástica</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <h1>Búsqueda del Tesoro Fantástica</h1>
-        <div id="connection-info">
-            <p>Esperando que tu pareja se conecte...</p>
-            <p>Comparte este enlace: <span id="game-link"></span></p>
-        </div>
 
-        <div id="game-area" style="display: none;">
-            <div id="role-display"></div>
-            <h2 id="puzzle-title"></h2>
-            <p id="puzzle-description"></p>
+  <div class="magic-effects" id="magicEffects"></div>
 
-            <div id="pister-section" class="player-section" style="display: none;">
-                <h3>Tu Información (Pistero):</h3>
-                <p id="pister-info"></p>
-                <input type="text" id="pister-input" placeholder="Escribe tu pista aquí...">
-                <button id="send-clue-btn">Enviar Pista</button>
-            </div>
+  <div class="container">
+    <h1>Búsqueda del Tesoro Fantástica</h1>
 
-            <div id="guesser-section" class="player-section" style="display: none;">
-                <h3>Pistas Recibidas:</h3>
-                <div id="clues-received"></div>
-                <h3>Tu Información (Adivinador):</h3>
-                <p id="guesser-info"></p>
-                <input type="text" id="guesser-input" placeholder="Adivina la respuesta aquí...">
-                <button id="send-answer-btn">Enviar Respuesta</button>
-            </div>
-
-            <div id="message-area"></div>
-        </div>
+    <div id="connection-info">
+      <p>Esperando que tu pareja se conecte...</p>
+      <p>
+        Comparte este enlace:
+        <span id="game-link"></span>
+      </p>
     </div>
 
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="script.js"></script>
+<div id="game-area" style="display: none;">
+  <div id="role-display" class="role-banner"></div>
+
+  <div class="flex-container">
+    <!-- Columna Izquierda: Laberinto -->
+    <div class="left-column">
+      <canvas id="mazeCanvas"></canvas>
+      <h2 id="puzzle-title"></h2>
+      <p id="puzzle-description"></p>
+    </div>
+
+    <!-- Columna Derecha: Interacción -->
+    <div class="right-column">
+      <!-- Sección Mago -->
+      <div id="pister-section" class="player-section" style="display: none;">
+        <h3>Pistas Recibidas:</h3>
+        <div id="clues-received-mago"></div>
+        <h3>Tu Información (Mago):</h3>
+        <p id="pister-info"></p>
+        <input type="text" id="pister-input" placeholder="Escribe tu adivinanza aquí..." />
+        <button id="send-clue-btn">Enviar Respuesta</button>
+      </div>
+
+      <!-- Sección Sacerdotisa -->
+      <div id="guesser-section" class="player-section" style="display: none;">
+        <h3>Pistas Enviadas:</h3>
+        <div id="clues-received-sacerdotisa"></div>
+        <h3>Tu Información (Sacerdotisa):</h3>
+        <p id="guesser-info"></p>
+        <div id="clue-options" style="display: none; margin-bottom: 15px;"></div>
+        <input type="text" id="guesser-input" placeholder="Escribe tu pista aquí..." />
+        <button id="send-answer-btn">Enviar Pista</button>
+      </div>
+
+      <!-- Mensajes del sistema -->
+      <div id="message-area"></div>
+    </div>
+  </div>
+</div>
+
+<div id="decision-modal" class="decision-modal" style="display: none;">
+  <div class="decision-content">
+    <h2>✨ Punto de Decisión ✨</h2>
+    <p>¿A qué camino deseas ir?</p>
+    <div id="decision-buttons"></div>
+  </div>
+</div>
+
+
+<!-- Modal Hechizo -->
+<div id="spell-modal" class="love-spell-modal" style="display: none;">
+  <div class="spell-content">
+    <h2>✨ Hechizo de Amor ✨</h2>
+    <p id="spell-message"></p>
+    <button onclick="closeSpellModal()">Aceptar</button>
+  </div>
+</div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
